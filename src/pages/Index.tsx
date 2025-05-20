@@ -3,11 +3,18 @@ import { useState } from "react";
 import { Layout } from "@/components/Layout";
 import { BellButton } from "@/components/BellButton";
 import { CountdownTimer } from "@/components/CountdownTimer";
-import { getRandomHistoryFact } from "@/lib/utils";
+import { getTodaysHistoryFact, getHistoryFactByDate } from "@/lib/utils";
 
 const Index = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const todayFact = "On May 21, 1881, Clara Barton founded the American Red Cross";
+  
+  // Get today's historical fact
+  const todayFact = getTodaysHistoryFact();
+  
+  // Get tomorrow's historical fact for preview
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const tomorrowFact = getHistoryFactByDate(tomorrow);
   
   const handlePlay = () => {
     setIsPlaying(true);
@@ -39,7 +46,7 @@ const Index = () => {
         <div className="bg-muted/50 rounded-lg p-4 max-w-sm w-full">
           <p className="text-sm font-medium">Tomorrow's preview:</p>
           <p className="text-balance italic text-muted-foreground">
-            "{todayFact}"
+            "{tomorrowFact}"
           </p>
         </div>
         

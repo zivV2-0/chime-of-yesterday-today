@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Layout } from "@/components/Layout";
 import { ChorusCard } from "@/components/ChorusCard";
 import { useToast } from "@/hooks/use-toast";
-import { generateWaveformPattern, getRandomHistoryFact } from "@/lib/utils";
+import { generateWaveformPattern, getHistoryFactByDate } from "@/lib/utils";
 
 const Timeline = () => {
   const [playingId, setPlayingId] = useState<string | null>(null);
@@ -18,7 +18,7 @@ const Timeline = () => {
     return {
       id: `chorus-${i}`,
       date,
-      title: getRandomHistoryFact(),
+      title: getHistoryFactByDate(date),
       waveform: generateWaveformPattern()
     };
   });
@@ -49,7 +49,7 @@ const Timeline = () => {
       <div className="space-y-6">
         <div>
           <h1 className="text-2xl font-bold text-navy-dark dark:text-white">Timeline</h1>
-          <p className="text-muted-foreground">Explore past daily choruses</p>
+          <p className="text-muted-foreground">Explore historical events that happened on these dates</p>
         </div>
         
         <div className="space-y-4">
